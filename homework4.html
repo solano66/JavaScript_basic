@@ -53,7 +53,7 @@
         <h2 id="title">請輸入會員資料</h2>
         <br>
         <table>
-            <!-- <tr>
+            <tr>
                 <td>
                     <label class="requiredMark">*</label>會員名稱
                 </td>
@@ -108,7 +108,7 @@
                     <label for="account"></label>
                     <input type="text" id="account" required>
                 </td>
-            </tr> -->
+            </tr>
             <tr>
                 <td>
                     <label class="requiredMark">*</label>密碼
@@ -154,15 +154,6 @@
                 passwordError.style.display = 'none';
                 ckPswInput.setCustomValidity('');
             }
-        });
-
-        form.addEventListener('submit', (event) => {
-            if (pswInput.value != ckPswInput.value) {
-                // 密码不一致时阻止表单提交
-                ckPswInput.setCustomValidity('兩次密碼內容不同');
-                event.preventDefault();  // 阻止表单提交
-            }
-            // 密码一致时，不需要调用 preventDefault，表单会正常提交
         });
 
     </script>
