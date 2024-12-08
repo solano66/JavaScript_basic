@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        width: 100px;
+    }
+</style>
+
+<body onload="tenDays(), showMonth()">
+
+    <!-- <img id="current-image" src="./1.png"> -->
+
+    <br>--------------------------------------------------<br>
+
+    選一個日期：
+    <select id="ten"></select>
+
+    <br>--------------------------------------------------<br>
+
+    請輸入日期:<br>
+    <label for="year1">西元:</label>
+    <input type="text" id="year1" size="4" onchange="showDay()">年
+    <select id="month" onchange="showDay()"></select>月
+    <select id="day"></select>日
+
+    <script>
+        // images = ["./1.png", "./2.png", "./3.png", "./4.jpg"];
+        // let currentIndex = 0;
+
+        // imageElement = document.getElementById("current-image");
+
+        // setInterval(() => {
+        //     currentIndex = (currentIndex + 1) % images.length;
+        //     imageElement.src = images[currentIndex];
+        // }, 2000);
+
+
+        function tenDays() {
+            txt = '<option value="None">請選擇';
+            let today = new Date();
+
+            for (let i = 0; i <= 10; i++) {
+                var futureDate = new Date();
+                futureDate.setDate(today.getDate() + i);
+
+                year = futureDate.getFullYear();
+                month = futureDate.getMonth() + 1;
+                date = futureDate.getDate();
+                if (month < 10) { month = "0" + month };
+                if (date < 10) { date = "0" + date };
+
+                txt += '<option value="' + year + '-' + month + '-' + date + '">' + year + '-' + month + '-' + date;
+            }
+            document.querySelector("#ten").innerHTML = txt;
+        }
+
+
+        function showMonth() {
+
+            txt = '<option value="None">請選擇';
+            for (i = 1; i <= 12; i++) {
+                txt += '<option value="' + i + '">' + i;
+            }
+            document.querySelector("#month").innerHTML = txt;
+        }
+
+        function showDay() {
+            days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+            txt = '<option value="None">請選擇';
+            input_year = document.querySelector("#year1").value
+            input_month = document.querySelector("#month").value
+
+            if (input_year % 400 == 0 || (input_year % 100 != 0 && input_year % 4 == 0)) {
+                days[1] = 29
+            }
+
+            for (i = 1; i <= days[input_month - 1]; i++) {
+                txt += '<option value="' + i + '">' + i;
+            }
+            document.querySelector("#day").innerHTML = txt;
+        }
+
+
+    </script>
+</body>
+
+</html>
